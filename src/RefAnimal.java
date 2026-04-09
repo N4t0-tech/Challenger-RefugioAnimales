@@ -123,7 +123,23 @@ public class RefAnimal {
             }
         } while (opcion != 7);
 
-        // Faltaba cerrar el scanner 
-        sc.close();
+
+
+    }
+    public static void mostrarAnimalesDisponibles(Map<String, String> estadoAnimal) {
+        // mostramos un mensaje si el campo del estado esta vacio.
+                if (estadoAnimal.isEmpty()) {
+                    System.out.println(" No hay animales registrados. ");
+
+                }else {
+                    // reccoremos el mapa
+                    estadoAnimal.forEach((nombre, estado ) -> {
+                        // mostramos solo si hay animales disponibles
+                        if (estado.equalsIgnoreCase("disponible")) {
+                            System.out.println(" - " + nombre);
+                        }
+                    });
+
+                }
     }
 }
