@@ -87,3 +87,25 @@ public class RefAnimal {
 
     }
 }
+
+// ============================
+// OPCIÓN 2 — REGISTRAR ESPECIE
+// ============================
+static void registrarEspecie() {
+    System.out.println("\n--- Registrar Especie ---");
+
+    String nombre = leerTextoValido("Nombre de la especie: ");
+    String especie = capitalizarPrimeraLetra(nombre);
+
+    // Verificar si ya existe (el Set previene duplicados, pero avisamos)
+    for (String e : especies) {
+        if (e.equalsIgnoreCase(especie)) {
+            System.out.println(" La especie '" + e + "' ya está registrada.");
+            return;
+        }
+    }
+
+    especies.add(especie);
+    System.out.println("Especie '" + especie + "' registrada exitosamente.");
+    System.out.println("Especies actuales: " + especies);
+}
