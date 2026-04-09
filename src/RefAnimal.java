@@ -4,11 +4,11 @@ public class RefAnimal {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        String[] animales = new String[100]; // Array para almacenar los nombres de los animales 
+        String[] animales = new String[100]; // Array para almacenar los nombres de los animales
         int[] edades = new int[100]; // Array para almacenar las edades de los animales
         String[] especies = new String[100]; // Array para almacenar las especies de los animales
         String[] estados = new String[100]; // Array para almacenar los estados de los animales
-        int contadorAnimales = 0; // Contador para llevar el número de animales registrados 
+        int contadorAnimales = 0; // Contador para llevar el número de animales registrados
 
         int opcion;
         do {
@@ -27,14 +27,49 @@ public class RefAnimal {
             //Switch moderno
             switch (opcion) {
                 case 1 -> {//dante
-                    System.out.print("Ingresa el nombre del animal: ");
-                    String nombre = sc.nextLine();
-                    System.out.print("Ingresa la edad del animal: ");
-                    int edad = sc.nextInt();
-                    System.out.print("Ingresa la especie del animal: ");
-                    String especie = sc.nextLine();
-                    System.out.print("Ingresa el estado del animal (disponible/adoptado):");
-                    String estado = sc.nextLine();
+                    System.out.println( "\n=== REGISTRAR ANIMAL ===");
+
+
+                    System.out.println("Nombre del animal: ");
+                    String nombre = sc.next().trim();
+
+                    //1. Validar si el nombre ya existe
+                    boolean duplicado = false;
+                    for (int i = 0; i < contadorAnimales; i++) {
+                        if (animales[i].equalsIgnoreCase(nombre)) {
+                            duplicado = true;
+                        }
+                    }
+                    //2. Validar si la especie existe
+                    System.out.println("Especie: ");
+                    String especieInput = sc.next().trim();
+
+                    boolean especieValida = false;
+                    for (int i = 0; i < contadorAnimales; i++) {
+                        if (especies[i].equalsIgnoreCase(especieInput)) {
+                            especieValida = true;
+                        }
+                    }
+                  //3. Logica de guardado con las condiciones
+                  if (duplicado) {
+                      System.out.println("Error: El animal ya esta registrado.");
+                  } else if (!especieValida) {
+                      System.out.println("Error: La especie no existe. Registrala en la opcion 2.");
+                  } else {
+                      System.out.println("Edad: ");
+                      int edad = sc.nextInt();
+                      sc.nextLine();
+
+                      //Guardar datos
+
+                      animales[contadorAnimales] = nombre;
+                      especies[contadorAnimales] = especieInput;
+                      edades[contadorAnimales] = edad;
+                      estados[contadorAnimales] = "Disponible"; // Estado inicial obligatorio.
+
+                      contadorAnimales++;
+                      System.out.println("Animal registrado correctamente.");
+                  }
                 }
                 case 2 -> {//bruno
                     System.out.print("Ingresa el nombre de la especie: ");
